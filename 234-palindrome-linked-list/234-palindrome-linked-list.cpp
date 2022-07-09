@@ -10,7 +10,7 @@
  */
 class Solution {
 public:
-    ListNode* getMid(ListNode* head){
+    ListNode* getMid(ListNode* &head){
         ListNode* slow=head;
         ListNode* fast=head->next;
         while(fast!=NULL && fast->next!=NULL){
@@ -20,7 +20,7 @@ public:
         return slow;
     }
     
-    ListNode* reverse(ListNode* head){
+    ListNode* reverse(ListNode*& head){
         ListNode* curr=head;
         ListNode* prev=NULL;
         ListNode* next_ele;
