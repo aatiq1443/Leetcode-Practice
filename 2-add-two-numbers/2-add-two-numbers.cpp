@@ -27,8 +27,10 @@ public:
             carry = sum / 10;
             curr->next = new ListNode(sum % 10);
             curr = curr->next;
-            l1 = l1 ? l1->next : nullptr;
-            l2 = l2 ? l2->next : nullptr;
+             if(l1!=NULL) 
+                l1=l1->next;
+            if(l2!=NULL) 
+                l2=l2->next;
         }
         return dummyHead->next;
     }
