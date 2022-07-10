@@ -1,34 +1,33 @@
-* };
-*/
-class Solution {
-public:
-// reverse the linked list
-ListNode* reverse(ListNode* head){
-ListNode* curr=head;
-ListNode* prev=NULL;
-ListNode* next_ele;
-while( curr != NULL){
-next_ele=curr->next;
-curr->next = prev;
-prev = curr;
-curr = next_ele;
+ListNode* ansTail=NULL;
+while(head1!=NULL || head2!=NULL || carry!=0){
+int data1=0;
+if(head1!=NULL){
+data1=head1->val;
 }
-return prev;
+int data2=0;
+if(head1!=NULL){
+data2=head1->val;
 }
-//insert at the end
-void insAtEnd(ListNode* &head, ListNode * &tail , int data){
-ListNode* temp=new ListNode(data);
-if(head==NULL){
-head=temp;
-tail=temp;
-return;
+int sum=data1+data2+carry;
+int digit=sum%10;
+​
+insAtEnd(ansHead,ansTail,digit);
+carry=sum/10;
+if(head1!=NULL)
+head1=head1->next;
+if(head2!=NULL)
+head2=head2->next;
 }
-else{
-tail->next=temp;
-tail=temp;
+return ansHead;
 }
+ListNode* addTwoNumbers(ListNode* first, ListNode* second) {
+//reverse both the linked list to add from the right side
+first=reverse(first);
+second=reverse(second);
+// add both linked list
+ListNode* ans=add(first,second);
+// reverse the linked list for required ans
+ans=reverse(ans);
+return ans;
 }
-// add both the modulo data and carry of addition should also be added
-ListNode* add(ListNode* head1 , ListNode* head2){
-int carry=0;
-ListNode* ansHead=NULL;
+};
