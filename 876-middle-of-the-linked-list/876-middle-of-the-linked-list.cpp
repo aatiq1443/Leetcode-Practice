@@ -9,30 +9,23 @@
  * };
  */
 class Solution {
-
 public:
-    ListNode* solve(ListNode* head , int pos){
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow=head;
+        ListNode* fast=head->next;
         int count=0;
         ListNode* temp=head;
-        while(count<(pos-1)){
-            count++;
+        while(temp){
             temp=temp->next;
-        }
-        return temp;
-    }
-    ListNode* middleNode(ListNode* head) {
-        int count=0;
-        ListNode*temp=head;
-        while(temp!=NULL){
             count++;
-           temp=temp->next;
         }
-        int var=count/2;
-        var+=1;
-        return solve(head,var);
-        
-        
-        
-        
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        if(count%2==0)
+            return slow->next;
+        else
+            return slow;
     }
 };
