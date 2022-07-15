@@ -10,24 +10,7 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode* &head, int k){
-        ListNode* curr=head;
-        ListNode* prev=NULL;
-        ListNode* next_ele=NULL;
-        while(curr){
-            next_ele=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next_ele;
-        }
-        int count=0;
-        while(prev!=NULL && count<k-1){
-            count++;
-            prev=prev->next;
-        }
-        cout<<prev->val;
-        return prev;
-    }
+
     ListNode* swapNodes(ListNode* head, int k) {
         
        ListNode* temp=head;
