@@ -11,33 +11,40 @@
  */
 class Solution {
 public:
-    vector<int> postorderTraversal(TreeNode* root) {
-        vector<int>ans;
-        TreeNode* curr=root;
-        stack<TreeNode*>st;
-        TreeNode* temp=NULL;
-        while(curr!=NULL || !st.empty()){
-            if(curr!=NULL){
-                st.push(curr);
-                curr=curr->left;
+    
+   void inprepost(TreeNode* root,vector<int>&pre ,vector<int>&in ,vector<int>&post){
+        stack<pair<TreeNode*,int>>st;
+        st.push({root,1});
+        while(!st.empty()){
+            auto it=st.top();
+            st.pop();
+            if(it.second==1){
+                pre.push_back(it.first->val);
+                it.second++;
+                st.push(it);
+                if(it.first->left!=NULL){
+                    st.push({it.first->left,1});
+                }
             }
-            else{
-                temp=st.top()->right;
-                if(temp==NULL){
-                    temp=st.top();
-                    st.pop();
-                    ans.push_back(temp->val);
-                    while(!st.empty() && temp==st.top()->right){
-                        temp=st.top();
-                        st.pop();
-                        ans.push_back(temp->val);
+           else if(it.second==2){
+                    in.push_back(it.first->val);
+                    it.second++;
+                    st.push(it);
+                    if(it.first->right!=NULL){
+                        st.push({it.first->right,1});
                     }
-                }
-                else{
-                    curr=temp;
-                }
+              }
+            else{
+                post.push_back(it.first->val);
             }
         }
-        return ans;
+    }
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int>pre;
+        vector<int>in;
+        vector<int>post;
+        if(root==NULL) return post;
+        inprepost(root,pre,in,post);
+        return post;
     }
 };
