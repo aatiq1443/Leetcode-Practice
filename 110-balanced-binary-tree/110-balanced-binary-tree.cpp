@@ -24,7 +24,8 @@ public:
         if(left==-1) return -1;
         int right=dfsHeight(root->right);
         if(right==-1) return -1;
-       
+        
+        // if(left==-1 && right==-1) return -1;
         if(abs(left-right)>1) return -1;
         return max(left,right)+1;
     }
