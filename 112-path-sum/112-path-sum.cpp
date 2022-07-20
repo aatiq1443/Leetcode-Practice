@@ -11,20 +11,18 @@
  */
 class Solution {
 public:
-    int solve(TreeNode*root,int tarSum){
+    int solve(TreeNode* root, int sum){
         if(root==NULL) return 0;
+        
         if(root->left==NULL && root->right==NULL){
-            if(tarSum==root->val){
+            if(sum==root->val){
                 return 1;
             }
-            else{
-                return 0;
-            }
+            return 0;
         }
         
-        int left=solve(root->left,tarSum-root->val);
-        
-        int right=solve(root->right,tarSum-root->val);
+        int left=solve(root->left, sum -root->val);
+        int right=solve(root->right, sum- root->val);
         
         return (left || right);
         
@@ -32,5 +30,6 @@ public:
     bool hasPathSum(TreeNode* root, int targetSum) {
         
         return solve(root,targetSum);
+       
     }
 };
