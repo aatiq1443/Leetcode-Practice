@@ -42,10 +42,6 @@ public:
                     if(temp->right!=NULL){
                         q.push(temp->right);
                     }
-//                      if(temp->left!=NULL){
-//                         q.push(temp->left);
-//                     }
-                    
                 }
             }
         
