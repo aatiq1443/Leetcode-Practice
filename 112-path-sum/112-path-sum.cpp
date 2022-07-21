@@ -12,9 +12,9 @@
 class Solution {
 public:
     int solve(TreeNode* root, int sum){
-        if(root==NULL) return 0;
+        if(!root) return 0;
         
-        if(root->left==NULL && root->right==NULL){
+        if(!root->left && !root->right){
             if(sum==root->val){
                 return 1;
             }
