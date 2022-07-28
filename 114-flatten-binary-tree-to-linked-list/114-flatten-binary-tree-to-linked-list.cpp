@@ -13,26 +13,33 @@ class Solution {
 public:
   
      
-    TreeNode* rightmost(TreeNode* root){
-        if (root->right==NULL) return root;
-        return rightmost(root->right);
+       void solve(TreeNode* root, vector<TreeNode*>&v){
+        
+        if(root==NULL) return;
+        
+        v.push_back(root);
+        solve(root->left,v);
+        solve(root->right,v);
+        
     }
     
     void flatten(TreeNode* root) {
-        if (root==NULL) return;
-        TreeNode* nextright;
-        TreeNode* rightMOST;
         
-        while (root){
+        vector<TreeNode*>v;
+        solve(root,v);
+        
+        TreeNode* temp = new TreeNode(-1);
+         TreeNode* newHead=temp;
+        for(auto it:v){
             
-            if (root->left){
-                rightMOST = rightmost(root->left);
-                nextright = root->right;
-                root->right = root->left;
-                root->left=NULL;
-                rightMOST->right=nextright;
-            }
-            root=root->right;
+           temp->right=it;
+           temp->left=NULL;
+           temp=temp->right;
         }
+        
+        temp->left=NULL;
+        temp->right=NULL;
+        
+        root = newHead->right;
     }
 };
