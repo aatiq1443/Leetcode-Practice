@@ -16,9 +16,9 @@ public:
             return true;
         }
         if(p==NULL || q==NULL){
-            return false;
+            return false;  //(p==q)
         }
         
-        return (p->val==q->val) && isSameTree(p->right,q->right) && isSameTree(p->left,q->left);
+        return (p->val==q->val) && isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
     }
 };
