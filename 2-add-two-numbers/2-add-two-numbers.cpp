@@ -15,14 +15,14 @@ public:
         ListNode* curr = dummy;
         int carry = 0;
         while (l1 != NULL || l2 != NULL || carry != 0) {
+            
             int head1=0;
-            if(l1!=NULL){
-                head1=l1->val;
-            }
+            if(l1!=NULL) head1=l1->val;
+            
            int head2=0;
-            if(l2!=NULL){
-                head2=l2->val;
-            }
+            
+            if(l2!=NULL)  head2=l2->val;
+               
             int sum = carry + head1 + head2;
             carry = sum / 10;
             curr->next = new ListNode(sum % 10);
