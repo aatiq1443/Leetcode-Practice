@@ -22,8 +22,11 @@ public:
     int findTargetSumWays(vector<int>& nums, int target) {
         target = abs(target);
         int sum = accumulate(nums.begin(),nums.end(),0);
-        if(target > sum || (target+sum)%2 != 0)return 0;
-        
-        return countSubsets(nums,(target+sum)/2);
+        if((sum+target)%2==0){
+            return countSubsets(nums,(sum+target)/2);
+        }
+        else{
+            return 0;
+        }
     }
 };
