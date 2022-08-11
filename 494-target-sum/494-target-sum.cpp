@@ -1,20 +1,29 @@
 class Solution {
 public:
-    int solve(vector<int> &ans , int i , int sum){
-        if(i==ans.size()){
-            if(sum==0){
-                return 1;
+   int countSubsets(vector<int>& nums,int sum){
+        int n = nums.size();
+        int dp[n+1][sum+1];
+        for(int i = 0; i < n+1; i++)
+            for(int j = 0; j < sum+1; j++){
+                if(i == 0)
+                    dp[i][j] = 0;
+                if(j == 0)
+                    dp[i][j] = 1;
             }
-            return 0;
-        }
-        int left=solve(ans, i+1, sum+ans[i]);
-        int right=solve(ans, i+1, sum-ans[i]);
-        
-        return left+right;
+        for(int i = 1; i < n+1; i++)
+            for(int j = 0; j < sum+1; j++){
+                if(nums[i-1] <= j)
+                    dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]];
+                else
+                    dp[i][j] = dp[i-1][j];
+            }
+        return dp[n][sum];
     }
     int findTargetSumWays(vector<int>& nums, int target) {
-        int n=nums.size();
+        target = abs(target);
+        int sum = accumulate(nums.begin(),nums.end(),0);
+        if(target > sum || (target+sum)%2 != 0)return 0;
         
-        return solve(nums, 0, target );
+        return countSubsets(nums,(target+sum)/2);
     }
 };
