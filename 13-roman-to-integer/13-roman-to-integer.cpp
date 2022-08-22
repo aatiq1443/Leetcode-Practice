@@ -11,14 +11,20 @@ public:
         m['M']=1000;
         
         int n=s.size();
-        int ans=0;
-        for(int i=n-1;i>=0;i--){
-            if(m[s[i]]< m[s[i+1]] && i<n-1){
-                ans=ans-m[s[i]];
+        int sum=0;
+        int num;
+        
+        for(int i=0 ; i<n ;){
+            if(i==n-1 || m[s[i]]>= m[s[i+1]]){
+                num=m[s[i]];
+                i++;
             }
-            else
-              ans=ans+m[s[i]];
+            else{
+                num=m[s[i+1]]-m[s[i]];
+                i=i+2;
+            }
+            sum=sum+num;
         }
-        return ans;
+        return sum;
     }
 };
