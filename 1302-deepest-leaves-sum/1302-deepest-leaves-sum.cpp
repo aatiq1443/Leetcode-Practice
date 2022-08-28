@@ -12,35 +12,14 @@
 class Solution {
 public:
     
-   void LevelOrder(TreeNode* root ,int & cnt){
-        queue<TreeNode*>q;
-        q.push(root);
-        q.push(NULL);
-        while(!q.empty()){
-            TreeNode* temp=q.front();
-            q.pop();
-            if(temp==NULL){
-                // cout<<endl;
-                cnt++;
-                if(!q.empty()){
-                    q.push(NULL);
-                }
-            }
-
-
-
-            else{
-                // cout<<temp->data<<" ";
-                
-                if(temp->left){
-                    q.push(temp->left);
-                }
-                if(temp->right){
-                    q.push(temp->right);
-                }
-            }
-        }
-    }
+   int height(TreeNode *root){
+       if(root==NULL) return 0;
+       
+       int left=height(root->left);
+       int right =height(root->right);
+       
+       return max(left, right)+1;
+   }
     
     void dfs(TreeNode *root , int count , int level , int &ans){
         if(root==NULL) return ;
@@ -55,8 +34,8 @@ public:
     }
     
     int deepestLeavesSum(TreeNode* root) {
-        int count=0;
-        LevelOrder(root , count);
+       
+       int count=height(root );
         // cout<<count;
         int ans=0;
         dfs(root , count , 1 , ans);
