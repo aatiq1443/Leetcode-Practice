@@ -31,10 +31,9 @@ public:
             q.pop();
             
             if(temp==NULL){
-                if(q.empty()){
-                    break;
+                if(!q.empty()){
+                    q.push(NULL);
                 }
-                q.push(NULL);
             }
             else{
                 temp->next=q.front();
