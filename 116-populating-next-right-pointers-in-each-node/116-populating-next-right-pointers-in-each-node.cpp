@@ -31,10 +31,12 @@ public:
             
             if(temp==NULL){
                 // curr->next=temp;
-                if(q.empty())
+                if(!q.empty()){
+                    q.push(NULL);
+                }
+                else{
                     break;
-                q.push(NULL);
-                
+                }    
             }
             else{
                 temp->next=q.front();
