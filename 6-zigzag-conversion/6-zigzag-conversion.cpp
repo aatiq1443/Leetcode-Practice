@@ -16,7 +16,8 @@ public:
                 ans.push_back(s[j]);
                 if(flag){
                     j=j+down;
-                } else {
+                } 
+                else {
                     j=j+up;
                 }
                 flag = !flag;
