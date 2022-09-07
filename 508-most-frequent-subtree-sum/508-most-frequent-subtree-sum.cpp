@@ -23,29 +23,22 @@ public:
         
     }
     
-//     void dfs(TreeNode * root , vector<int> &ans){
-//         if(!root) return ;
-        
-//         solve(root , ans);
-//         dfs(root->left , ans);
-//         dfs(root->right , ans);
-//     }
     
     vector<int> findFrequentTreeSum(TreeNode* root) {
         vector<int> ans;
         
-        if(root->left==NULL && root->right!=NULL && root->val!=root->right->val && root->right->right==NULL &&  root->right->left==NULL){
+//         if(root->left==NULL && root->right!=NULL && root->val!=root->right->val && root->right->right==NULL &&  root->right->left==NULL){
             
-            ans.push_back(root->right->val);
-            cout<<root->right->val;
-            return ans;
-        }
-        if(root->left!=NULL && root->right==NULL  && root->val!=root->left->val && root->left->left==NULL && root->left->right==NULL){
+//             ans.push_back(root->right->val);
+//             cout<<root->right->val;
+//             return ans;
+//         }
+//         if(root->left!=NULL && root->right==NULL  && root->val!=root->left->val && root->left->left==NULL && root->left->right==NULL){
             
-            ans.push_back(root->left->val);
-            cout<<root->left->val;
-            return ans;
-        }
+//             ans.push_back(root->left->val);
+//             cout<<root->left->val;
+//             return ans;
+//         }
         
         solve(root , ans);
         int maxi=INT_MIN;
@@ -53,18 +46,18 @@ public:
         
         for(auto i:ans){
             mp[i]++;
-            cout<<i<<" ";
         }
-        cout<<endl;
+       
         for(auto i:mp){
             if(maxi<i.second){
                 maxi=i.second;
             }
         }
-        cout<<maxi;
+        
         if(maxi==1){
             return ans;
         }
+        
         else{
             vector<int>ds;
              for(auto i:mp){
