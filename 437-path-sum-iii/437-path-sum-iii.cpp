@@ -12,40 +12,31 @@
 class Solution {
 public:
     
-    void solve(TreeNode *root , int &ans , long long int sum , map<TreeNode * , int>&mp){
+    void solve(TreeNode* root, int target , vector<int>&ans , int &count){
         
-        if(!root) return;
+        if(!root) return ;
         
-        if(sum == root->val && mp[root]<1) ans++;
+        ans.push_back(root->val);
         
-        mp[root]=1;
+        solve(root->left , target , ans , count);
+        solve(root->right , target , ans , count);
         
-        solve(root->left , ans , sum-root->val , mp);
-        solve(root->right , ans , sum-root->val ,mp);
-        
-    }
-    
-    void dfs(TreeNode *root , int &ans , long long int sum){
-        
-        if(!root) return;
-        
-        map<TreeNode *, int>mp;
-        
-        solve(root , ans , sum ,mp);
-        
-        dfs(root->left , ans , sum);
-        dfs(root->right , ans , sum);
+        int size=ans.size();
+        long long sum=0;
+        for(int i=size-1;i>=0;i--){
+            sum+=ans[i];
+            if(sum==target) count++;
+        }
+        ans.pop_back();
         
     }
-    
     
     int pathSum(TreeNode* root, int targetSum) {
-        int ans=0;
         
-        long long int sum=targetSum;
+        vector<int>ans;
+        int count=0;
         
-        dfs(root , ans , sum);
-        
-        return ans;
+        solve(root , targetSum , ans , count);
+        return count;
     }
 };
