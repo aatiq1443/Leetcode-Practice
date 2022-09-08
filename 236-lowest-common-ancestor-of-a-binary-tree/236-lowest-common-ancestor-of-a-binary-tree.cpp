@@ -20,11 +20,15 @@ public:
         
         if(left && right) return root;
         
-        else if(left && !right) return left;
+//         else if(left && !right) return left;
         
-        else if(!left && right) return right;
+//         else if(!left && right) return right;
         
-        else return NULL;
+//         else return NULL;
+        
+        // or
+            
+        return left ? left :right;
         
     }
 };
