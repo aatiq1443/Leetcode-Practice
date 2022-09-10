@@ -17,27 +17,56 @@ public:
         
 //     }
     
-    int tabu(vector<int> &arr , vector<int> &dp , int n){
-        dp[0]=arr[0];
+//     int tabu(vector<int> &arr , vector<int> &dp , int n){
+//         dp[0]=arr[0];
+        
+//         for(int i=1;i<n;i++){
+//             int left = arr[i] ;
+//             if(i>1) left+=dp[i-2];
+//             int right = 0 + dp[i-1];
+            
+//             dp[i] = max(left, right);
+//         }
+//         return  dp[n-1];
+        
+//     }        
+       
+    int rob(vector<int>& arr) {
+       
+        int n= arr.size();
+        int prev= arr[0];
+        int prev2=0;
         
         for(int i=1;i<n;i++){
             int left = arr[i] ;
-            if(i>1) left+=dp[i-2];
-            int right = 0 + dp[i-1];
+            if(i>1) left+=prev2;
             
-            dp[i] = max(left, right);
+            
+            int right = 0 + prev;
+            
+            int curr= max(left  , right);
+            
+            prev2 = prev;
+            prev = curr;
+            
+        
         }
-        return  dp[n-1];
         
-    }        
-       
-    int rob(vector<int>& nums) {
-        int n=nums.size();
-        vector<int> dp(n,0);
+        return prev;
         
-        int ans=tabu(nums , dp , n);
         
-        return ans;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // int ans=solve(nums , dp , n);
+        // int ans=tabu(nums , dp , n);
+        // return ans;
         
     }
 };
