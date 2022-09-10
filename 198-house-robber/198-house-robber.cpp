@@ -3,7 +3,7 @@ public:
     
     int solve(vector<int> &ans, vector<int> &dp , int n){
         
-        if(n==0) return dp[n]=ans[n];
+        if(n==0) ans[n];
         
         if(n<0) return 0;
         
