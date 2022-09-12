@@ -21,12 +21,14 @@ public:
         solve(root->left , target , ans , count);
         solve(root->right , target , ans , count);
         
-        int size=ans.size();
+        int size = ans.size();
         long long sum=0;
-        for(int i=size-1;i>=0;i--){
+        
+        for(int i=size-1;i >=0 ;i--){
             sum+=ans[i];
-            if(sum==target) count++;
+            if(sum == target) count++;
         }
+        
         ans.pop_back();
         
     }
