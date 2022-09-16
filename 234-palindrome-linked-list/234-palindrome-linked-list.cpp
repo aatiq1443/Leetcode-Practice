@@ -10,46 +10,67 @@
  */
 class Solution {
 public:
+    ListNode* midNode(ListNode *head){
+    
+    ListNode *slow = head;
+    ListNode *fast = head->next;
+    
+    while(fast!=NULL && fast->next!=NULL){
+        slow= slow->next;
+        fast = fast ->next ->next;
+    }
+    
+    return slow;
+    
+    
+}
+
+ListNode *reverse(ListNode *head){
+    
+    ListNode *curr = head;
+    ListNode *prev = NULL;
+    ListNode *next_ele = NULL;
+    
+    while(curr!=NULL){
+        
+        next_ele= curr->next;
+        curr->next = prev;
+        prev= curr;
+        
+        curr= next_ele;
+        
+    }
+    return prev;
+}
     
     bool isPalindrome(ListNode* head) {
-        if(head==NULL) return false;
+         if(!head || !head->next) return true;
         
-        ListNode *middle=getMid(head);
-        
-        ListNode*temp= middle->next;
-        
-        middle->next=reverse(temp);
-        
-        ListNode *head1=head;
-        ListNode *head2=middle->next;
-        
-        while(head2!=NULL){
-            if(head1->val!=head2->val) return false;
-            
-                head1=head1->next;
-                head2=head2->next;
-            
+        if(head->next->next == NULL){
+            if(head->val != head ->next ->val) return false;
+            else return true;
         }
-        return true;
+    
+        ListNode* middle = midNode(head);
+
+        ListNode * temp = middle->next;
+
+        middle->next = reverse(temp);
+
+        ListNode *head1 = head;
+        ListNode *head2 = middle->next;
+
+        while(head2!= NULL){
+
+            if(head1->val != head2->val) return 0;
+
+            head1 = head1->next;
+
+            head2 = head2->next;
+
+        }
+    return 1;
     }
     
-    ListNode *getMid(ListNode *head){
-        ListNode *slow=head;
-        ListNode *fast= head-> next;
-        
-        while(fast && fast->next){
-            slow=slow->next;
-            fast=fast->next->next;
-        }
-        return slow;
-        
-    }
-    ListNode *reverse(ListNode *head){
-        if(head==NULL || head->next==NULL) return head;
-        
-        ListNode *nextele=reverse(head->next);
-        head->next->next=head;
-        head->next=NULL;
-        return nextele;
-    }
+    
 };
