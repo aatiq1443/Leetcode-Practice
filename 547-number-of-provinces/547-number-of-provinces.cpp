@@ -1,43 +1,52 @@
 class Solution {
 public:
     
-    void dfs(int i , vector<int> adj[] , vector<int>&vis){
+    void bfs(int node , vector<vector<int>>&grid , vector<int>&vis  , vector<int> adj[]){
         
-        vis[i] = 1 ;
+        vis[node]=1;
+        queue<int>q;
+        q.push(node);
         
-        for(auto it:adj[i]){
-            if(!vis[it]){
-                dfs(it , adj , vis);
+        while(!q.empty()){
+            int temp = q.front();
+            q.pop();
+            
+            for(auto i:adj[temp]){
+                if(!vis[i]){
+                    vis[i]=1;
+                    q.push(i);
+                }
             }
         }
         
     }
     
-    int findCircleNum(vector<vector<int>>& mat) {
+    int findCircleNum(vector<vector<int>>& grid) {
         
-        int n = mat.size();
+        int n = grid.size();
+        int m =grid[0].size();
         
-        vector<int> adj[n];
+        vector<int>adj[n];
         
-        for(int i= 0 ;i<n;i++){   
-            for(int j=0;j<mat[0].size();j++){
-                if(mat[i][j] == 1 && i!=j){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1 && i!=j){
                     adj[i].push_back(j);
-                    adj[j].push_back(i);  
+                    adj[j].push_back(i);
                 }
             }
         }
         
-        vector<int> vis(n , 0);
+        vector<int>vis(n,0);
         int cnt=0;
-        for(int i=0; i<n ;i++){
+        
+        for(int i=0;i<n;i++){
             if(!vis[i]){
                 cnt++;
-                dfs(i , adj , vis);
+                bfs(i , grid , vis , adj);
             }
         }
         
         return cnt;
-   
     }
 };
