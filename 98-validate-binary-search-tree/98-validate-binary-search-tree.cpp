@@ -11,27 +11,21 @@
  */
 class Solution {
 public:
-    
-    void inorder(TreeNode *root , vector<int> &ans){
-        if(root==NULL) return ;
+    bool isBST(TreeNode* root , long minn , long maxi){
+        if(root==NULL) return true;
         
-        inorder(root->left ,ans);
-        ans.push_back(root->val);
-        inorder(root->right ,ans);
+        if(root->val > minn && root->val < maxi){
+            bool left= isBST(root->left , minn , root->val);
+
+            bool right=isBST(root->right , root->val , maxi);
+            
+            return left && right;
+        }
+        
+        else return false;
     }
     
     bool isValidBST(TreeNode* root) {
-        vector<int>ans;
-        inorder(root , ans);
-        // for(auto i:ans){
-        //     cout<<i <<" ";
-        // }
-        // cout<<endl;
-        int n=ans.size();
-        
-        for(int i=1;i<n;i++){
-           if(ans[i]<=ans[i-1]) return false;
-        }
-        return true;
+        return isBST(root , LONG_MIN , LONG_MAX);
     }
 };
