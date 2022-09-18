@@ -3,7 +3,7 @@ public:
     
     void dfs(int i , vector<int> adj[] , vector<int>&vis){
         
-        vis[i] =1 ;
+        vis[i] = 1 ;
         
         for(auto it:adj[i]){
             if(!vis[it]){
@@ -20,7 +20,7 @@ public:
         vector<int> adj[n];
         
         for(int i= 0 ;i<n;i++){   
-            for(int j=0;j<n;j++){
+            for(int j=0;j<mat[0].size();j++){
                 if(mat[i][j] == 1 && i!=j){
                     adj[i].push_back(j);
                     adj[j].push_back(i);  
