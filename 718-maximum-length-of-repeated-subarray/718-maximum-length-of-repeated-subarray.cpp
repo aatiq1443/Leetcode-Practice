@@ -3,7 +3,9 @@ public:
     int findLength(vector<int>& A, vector<int>& B) {
         
         if (A.size() < B.size()) swap(A, B);
-        int M = A.size(), N = B.size();
+        
+        int M = A.size();
+        int N = B.size();
         vector<int> dp(N + 1, 0);
         int ans = 0;
         
@@ -12,7 +14,8 @@ public:
                 
                 if (A[i] == B[j]) {
                     dp[j + 1] = 1 + dp[j];
-                } else {
+                } 
+                else {
                     dp[j + 1] = 0;
                 }
                               
