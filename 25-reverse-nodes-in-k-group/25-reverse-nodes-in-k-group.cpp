@@ -14,7 +14,7 @@ public:
     {
         ListNode* prev = last;
         
-        while ( first != last )
+        while (first!=last )
         {
             auto tmp = first->next;
             first->next = prev;
@@ -30,8 +30,8 @@ public:
         auto node=head;
         for (int i=0; i < k; ++i)
         {
-            if ( ! node  )
-                return head; // nothing to do list too sort
+            if(!node)
+                return head; 
             node = node->next;
         }
 
