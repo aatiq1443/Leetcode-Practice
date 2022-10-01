@@ -1,17 +1,16 @@
 class Solution {
 public:
     int numTrees(int n) {
-        
-        long long int a=2*n;
-        int b=n;
-		
-        int i,j;
+       
+        long long int size=2*n;
+       
         long long int ans=1;
-        for(i=0;i<b;i++)
+        
+        for(int i=0;i<n;i++)
         {
-            ans*=(a-i);
+            ans*=(size-i);
             ans/=(i+1);
         }
-        return ans/(b+1);
+        return ans/(n+1);
     }
 };
