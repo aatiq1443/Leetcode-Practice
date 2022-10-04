@@ -12,32 +12,24 @@
 class Solution {
 public:
     
-    bool dfs(TreeNode *root ,  int target){
-        
-        if(!root) return 0;
+    bool solve(TreeNode *root , int target){
+        if(!root) return false;
         
         if(!root->left && !root->right){
             if(target == root->val){
-                return 1;
+                return true;
             }
-            else{
-                return 0;
-            }
+            return false;
         }
         
-        bool left = dfs(root->left , target - root->val);
-        bool right = dfs(root->right , target - root->val);
+        int left = solve(root->left , target-root->val);
+        int right = solve(root->right , target - root->val);
         
-        return left || right;
+        return left|| right;
         
     }
     
     bool hasPathSum(TreeNode* root, int targetSum) {
-        
-        if(!root) return false;
-        
-        
-        return dfs(root , targetSum );
-        
+        return solve(root , targetSum);
     }
 };
