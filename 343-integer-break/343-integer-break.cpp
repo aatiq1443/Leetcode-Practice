@@ -6,7 +6,7 @@ public:
         
         if(dp[n]!=-1) return dp[n];
         
-        int ans = 1*(n-1);
+        int ans = 0;
         for(int i=1 ; i<n ;i++){
              int prod= i* max(n-i , solve(n-i , dp));
              if(prod > ans) ans=prod;
