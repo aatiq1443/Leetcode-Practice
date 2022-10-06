@@ -12,23 +12,25 @@
 class Solution {
 public:
     
-    void solve(TreeNode *root  , vector<int>&ans , int level){
-        if(root==NULL) return;
+    void solve(TreeNode *root , vector<int> &ans , int lvl){
         
-        if(level==ans.size()){
-           ans.push_back(root->val);
+        if(!root) return ;
+        
+        if(lvl == ans.size()){
+            ans.push_back(root->val);
         }
-        solve(root->right, ans , level+1);
-        solve(root->left, ans , level+1);
+        
+        solve(root->right , ans , lvl+1);
+        solve(root->left ,  ans , lvl+1);
         
     }
     
     vector<int> rightSideView(TreeNode* root) {
-        vector<int>ans;
-        if(root==NULL){
-            return ans;
-        }
-        solve(root, ans , 0);
+        vector<int> ans;
+        
+        if(!root) return ans;
+        
+        solve(root , ans , 0);
         return ans;
     }
 };
