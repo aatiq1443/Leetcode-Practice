@@ -14,10 +14,17 @@ public:
         
         if(!head || !head->next) return head;
         
-        head ->next = deleteDuplicates(head->next);
+        ListNode * curr = head;
+        ListNode * prev = NULL;
         
-        return head->val == head->next->val ? head ->next : head;
-        
-        
+        while(curr->next){
+            if(curr->val == curr->next->val){
+                curr->next = curr->next->next;
+            }
+            else{
+                curr= curr->next;
+            }
+        }
+        return head;
     }
 };
