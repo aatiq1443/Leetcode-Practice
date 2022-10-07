@@ -13,10 +13,6 @@ public:
         int next;
         int temp=0;
         int x;
-        for(auto i:ans){
-            cout<<i<<" ";
-        }
-        cout<<endl;
         for(int i=0;i<m;i++){
             if(i==0){
                 prev=0;
@@ -26,17 +22,19 @@ public:
             }
             next=ans[m-1]-ans[i];
             if(prev==next){
-                temp=1;
-                x=i;
+//                 temp=1;
+//                 x=i;
                 
-                break;
+//                 break;
+                return i;
             }
         }
-        if(temp==0){
-            return -1;
-        }
-        else{
-            return x;
-        }
+        // if(temp==0){
+        //     return -1;
+        // }
+        // else{
+        //     return x;
+        // }
+        return -1 ;
     }
 };
