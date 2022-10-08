@@ -11,39 +11,38 @@
  */
 class Solution {
 public:
-    int res=0;
-    map<int,int>mp;
     
-    void solve(TreeNode* root)
-    {
-        if(!root)
-        {
-            return ;
-        }
-        mp[root->val]++;
-        if(!root->left&&!root->right)
-        {
-            int x=0;
-            for(auto i:mp)
-            {
-                if(i.second%2!=0)
-                {
-                    x++;
-                }
-            }
-            if(x<=1)
-            {
-                res++;
-            }
-        }
-        solve(root->left);
-        solve(root->right);
-        mp[root->val]--;
-    }
-    int pseudoPalindromicPaths (TreeNode* root) {
+    void dfs(TreeNode* root , vector<int> &ans , int &count){
         
-        solve(root);
-        return res;
+        if(!root) return ;
+        
+        ans[root->val]++;
+        
+        dfs(root->left , ans , count);
+        dfs(root->right , ans , count);
+        
+        if(!root->left && !root->right){
+            int element_cnt  = 0;
+            
+            for(int i=0 ;i<10 ;i++){
+                if(ans[i]%2!=0) element_cnt++;
+            }
+            
+            if(element_cnt == 1 || element_cnt == 0) count++; 
+            
+        }
+        
+        ans[root->val]--;
+        
+        
+    }
     
+    int pseudoPalindromicPaths (TreeNode* root) {
+        vector<int> ans(10 , 0);
+        int count = 0;
+        
+        dfs(root , ans , count);
+        
+        return count;
     }
 };
