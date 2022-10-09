@@ -13,16 +13,15 @@ class Solution {
 public:
     bool checkTree(TreeNode* root) {
         
-        if(!root) return true;
+        if(!root || !root->left && !root->right) return true;
         
-        if(root->left && root->right){
-            if(root->val != (root->left->val + root->right->val)) return false;
-        }
+        int lsum  , rsum;
         
-        checkTree(root->left);
-        checkTree(root->right);
+        if(root->left) lsum = root->left ->val;
+        if(root->right) rsum = root->right ->val;
         
-        return true;
+        return ( root->val == (lsum + rsum) && checkTree(root->left) && checkTree(root->right) );
+        
         
     }
 };
