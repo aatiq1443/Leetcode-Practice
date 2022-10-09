@@ -14,16 +14,17 @@ public:
     
     
     TreeNode *solve(vector<int>&ans , int st  , int end){
-        if(st> end) return NULL;
+        
+         if(st > end ) return NULL;
         
         int mid = st + (end-st)/2;
         
-        TreeNode *curr= new TreeNode(ans[mid]);
+        TreeNode *root = new TreeNode (ans[mid]);
         
-        curr->left=solve( ans , st , mid-1);
-        curr->right = solve(ans , mid+1 , end);
+        root->left = solve(ans , st , mid-1);
+        root->right = solve(ans , mid+1 , end);
         
-        return curr;
+        return root;
         
         
     }
