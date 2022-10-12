@@ -11,22 +11,78 @@
  */
 class Solution {
 public:
-     int solve(TreeNode *cur){
-         
-        if(cur==NULL) return 0;
-         
-        return 1+max(solve(cur->left),solve(cur->right));
+    
+    TreeNode *lca(TreeNode *root , int p , int q){
+        
+        if(!root) return NULL;
+        
+        if(root->val == p || root->val == q) return root;
+        
+        TreeNode * left = lca(root->left , p , q);
+        TreeNode * right = lca(root->right , p , q);
+        
+        if(left && right) return root;
+        
+        if(!left && right) return right;
+        
+        if(left && !right) return left;
+        
+        else return NULL;
+        
     }
+    
+    
+    int height(TreeNode *root){
+        
+        if(!root) return 0;
+        
+        return max(height(root->left) , height(root->right)) +1;
+        
+    }
+    
+    void bfs(TreeNode*root , vector<int> &ans , int &lvl , int len){
+        
+        queue<TreeNode*> q;
+        q.push(root);
+        q.push(NULL);
+        
+        while(!q.empty()){
+            auto temp = q.front();
+            q.pop();
+            if(temp == NULL){
+                lvl++;
+                if(!q.empty()){
+                    q.push(NULL);
+                }
+            }
+            else{
+                if(lvl == len){
+                    ans.push_back(temp->val);
+                }
+                
+                if(temp->left) q.push(temp->left);
+                if(temp->right) q.push(temp->right);
+                
+            }
+        }
+    }
+    
     TreeNode* lcaDeepestLeaves(TreeNode* root) {
         
-        int left=solve(root->left);
-        int right=solve(root->right);
+        int len = height(root);
         
-        if(left==right)return root;
+        int lvl = 1;
+        vector<int> ans;
+        bfs(root , ans , lvl , len);
         
-        else if(left<right)return lcaDeepestLeaves(root->right);
+        if(ans.size() == 1){
+            TreeNode *newnode = new TreeNode(ans[0]);
+            return newnode;
+        }
         
-        else return lcaDeepestLeaves(root->left);
-    
+        TreeNode *node = lca(root , ans[0] , ans[ans.size() - 1]);
+        
+        return node;
+        
     }
 };
