@@ -49,8 +49,7 @@ public:
         if(left == right) return (1<<left) - 1;
         
         return 1 + countNodes(root->left) + countNodes(root->right);
-        
-        
+
     }
 };
 
