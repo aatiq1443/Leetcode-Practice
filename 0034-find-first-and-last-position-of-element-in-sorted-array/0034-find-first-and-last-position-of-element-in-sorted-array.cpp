@@ -57,12 +57,8 @@ public:
         
        int first = frist_occ(nums , target);
        int second = second_occ(nums , target);
-        vector<int> ans;
-        
-        ans.push_back(first);
-        ans.push_back(second);
-        
-        return ans;
+       
+       return {first , second};
         
     }
 };
