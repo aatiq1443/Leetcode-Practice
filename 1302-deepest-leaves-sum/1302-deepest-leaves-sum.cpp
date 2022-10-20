@@ -11,37 +11,47 @@
  */
 class Solution {
 public:
+    
+    int getHeight(TreeNode *root){
+        if(!root) return 0;
+        
+        return max(getHeight(root->left) , getHeight(root->right))+1;
+    }
+    
     int deepestLeavesSum(TreeNode* root) {
+        int height = getHeight(root);
         
         queue<TreeNode*>q;
         q.push(root);
         q.push(NULL);
+        
+        int lvl = 1;
         int sum=0;
+        
         while(!q.empty()){
-            TreeNode* temp=q.front();
+            auto temp = q.front();
             q.pop();
+            
             if(temp==NULL){
-                // cout<<endl;
                 
                 if(!q.empty()){
-                    sum=0;
+                    lvl++;
                     q.push(NULL);
                 }
             }
-
-
-
-            else{
-                // cout<<temp->data<<" ";
-                sum+=temp->val;
-                if(temp->left){
-                    q.push(temp->left);
-                }
-                if(temp->right){
-                    q.push(temp->right);
+                else{
+                    if(lvl == height){
+                       sum+=temp->val;
+                    }
+                    if(temp->left){
+                        q.push(temp->left);
+                    }
+                    if(temp->right){
+                        q.push(temp->right);
+                    }
                 }
             }
-        }
+        
         return sum;
     }
 };
