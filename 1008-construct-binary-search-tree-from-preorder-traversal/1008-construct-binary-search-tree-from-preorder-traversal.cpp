@@ -12,27 +12,25 @@
 class Solution {
 public:
     
-    TreeNode *BST(vector<int> &pre , int &i , int bound){
+    TreeNode *solve(vector<int> &pre , int &i , int bound){
         
-        if( i == pre.size() || pre[i] > bound) return NULL;
+        if(i==pre.size() || pre[i]>bound ) return NULL;
         
-        TreeNode *root = new TreeNode(pre[i++]);
+        TreeNode* root = new TreeNode(pre[i++]);
         
-        root->left = BST(pre , i , root->val);
-        root->right = BST(pre , i , bound);
+        root->left = solve(pre , i , root->val);
+        root->right = solve(pre , i , bound);
         
         return root;
-        
     }
-    
     
     
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        int i= 0;
-        int upp_bound = INT_MAX;
         
-        return BST(preorder , i , upp_bound);
+        int i = 0;
+        int bound = INT_MAX;
+        
+        return solve(preorder , i , bound);
+        
     }
-    
-    
 };
