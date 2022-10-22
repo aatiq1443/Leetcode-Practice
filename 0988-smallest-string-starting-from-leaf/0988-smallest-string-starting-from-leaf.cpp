@@ -25,7 +25,7 @@ public:
             
             if(ans == "") ans = str1;
             
-           else if(ans>str1) ans = str1;
+            ans = min(ans ,str1);
                     
             temp.pop_back();
             return ;
