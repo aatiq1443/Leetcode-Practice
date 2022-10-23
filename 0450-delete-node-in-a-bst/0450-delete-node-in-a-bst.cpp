@@ -20,17 +20,17 @@ public:
             if(root->left == NULL) return root->right;
             if(root->right == NULL) return root->left;
             
-            TreeNode * temp = root->left;
-            TreeNode * ans = root->right;
+            TreeNode * left = root->left;
+            TreeNode * right = root->right;
             
-            root = root->right ;
+            root = root->left ;
             
             
             
-            while(root->left != NULL) root = root->left;
-            root->left = temp;
-            
-            return ans;
+            while(root->right != NULL) root = root->right;
+            root->right = right;
+
+            return left;
             
             
         }
