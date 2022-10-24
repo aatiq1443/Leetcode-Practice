@@ -38,10 +38,12 @@ public:
         int n = pre.size();
         
         unordered_map<int,int> mp;
+        
         for(int i=0;i<post.size();i++)
             mp[post[i]]=i;
         
         int preorderIndex=0;
+        
         return buildTree(pre,mp,preorderIndex);
         
     }
