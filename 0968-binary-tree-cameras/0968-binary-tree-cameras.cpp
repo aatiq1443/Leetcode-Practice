@@ -13,7 +13,7 @@ class Solution {
 public:
     
     // #0 => not monitored
-    // #1 => monitored no camera
+    // #1 => monitored but no camera
     // #2 => monitored and having camera itself
     
     // by: Aatiq Afzal
