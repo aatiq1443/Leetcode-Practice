@@ -10,28 +10,27 @@
  */
 class Solution {
 public:
-
     ListNode* swapNodes(ListNode* head, int k) {
         
-       ListNode* temp=head;
-        int count=0;
-        int size=0;
-        while(temp){
-            size++;
-            temp=temp->next;
+        ListNode *temp1 = head;
+        ListNode *temp2 = head;
+        ListNode *kth = NULL;
+        
+        while(--k){
+            
+            temp1 = temp1->next;
         }
-        temp=head;
-        while(temp!=NULL && count<k-1){
-            temp=temp->next;
-            count++;
+        kth = temp1;
+        temp1 = temp1->next;
+        
+        while(temp1){
+            temp1 = temp1->next;
+            temp2 = temp2->next;
         }
-        int size_rev=0;
-        ListNode* rev=head;
-        while(rev!=NULL && size_rev<size-k){
-            size_rev++;
-            rev=rev->next;
-        }
-        swap(temp->val,rev->val);
+        
+        swap(kth->val , temp2->val);
+        
         return head;
+        
     }
 };
