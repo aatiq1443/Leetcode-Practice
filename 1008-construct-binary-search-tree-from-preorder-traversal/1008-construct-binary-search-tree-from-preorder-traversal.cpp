@@ -14,14 +14,15 @@ public:
     
     TreeNode *solve(vector<int> &pre , int &i , int bound){
         
-        if(i==pre.size() || pre[i]>bound ) return NULL;
+        if(i == pre.size() || pre[i] > bound) return NULL;
         
-        TreeNode* root = new TreeNode(pre[i++]);
+        TreeNode *root = new TreeNode (pre[i++]);
         
         root->left = solve(pre , i , root->val);
         root->right = solve(pre , i , bound);
         
         return root;
+        
     }
     
     
