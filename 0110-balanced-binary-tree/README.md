@@ -1,10 +1,4 @@
-<h2><a href="https://leetcode.com/problems/balanced-binary-tree/">110. Balanced Binary Tree</a></h2><h3>Easy</h3><hr><div><p>Given a binary tree, determine if it is height-balanced.</p>
-
-<p>For this problem, a height-balanced binary tree is defined as:</p>
-
-<blockquote>
-<p>a binary tree in which the left and right subtrees of <em>every</em> node differ in height by no more than 1.</p>
-</blockquote>
+<h2><a href="https://leetcode.com/problems/balanced-binary-tree/">110. Balanced Binary Tree</a></h2><h3>Easy</h3><hr><div><p>Given a binary tree, determine if it is <span data-keyword="height-balanced"><strong>height-balanced</strong></span>.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
