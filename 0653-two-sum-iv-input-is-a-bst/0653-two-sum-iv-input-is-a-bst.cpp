@@ -14,16 +14,15 @@ public:
     
     void solve(TreeNode *root , unordered_map<int , int> &mp , bool &ans , int k){
         
-        if(!root) return;
+        if(!root) return ;
         
         if(mp[k - root->val]){
-            
-            ans = true;
-            return ;
+            ans  = true;
+            return;
         }
-        mp[root->val] = 1;
         
-        solve(root->left  , mp , ans , k);
+        mp[root->val] = 1;
+        solve(root->left , mp , ans , k);
         solve(root->right , mp , ans , k);
     }
     
