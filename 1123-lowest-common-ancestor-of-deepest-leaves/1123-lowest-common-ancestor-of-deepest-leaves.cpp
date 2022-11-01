@@ -57,11 +57,10 @@ public:
         TreeNode *left = lca(p , q , root->left);
         TreeNode *right = lca(p , q , root->right);
         
-        if(left && right) return root;
-        if(!left && right) return right;
-        if(left && !right) return left;
-        else
-            return NULL;
+        if(!left) return right;
+        if(!right) return left;
+        
+        return root;
         
     }
     
