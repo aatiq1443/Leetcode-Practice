@@ -12,24 +12,26 @@
 class Solution {
 public:
     
-    int solve(TreeNode *root , int &ans){
+    int dfs(TreeNode *root , int &ans){
         
         if(!root) return 0;
         
-        int left = max(0 ,solve(root->left , ans));
-        int right = max(0 ,solve(root->right , ans));
+        int left = max(0  , dfs(root->left  , ans));
         
-        ans = max( ans  , left + right + root->val);
+        int right = max(0 , dfs(root->right , ans));
+        
+        ans = max(ans , left+right +root->val);
         
         return max(left , right) + root->val;
         
     }
     
     int maxPathSum(TreeNode* root) {
-        int ans = INT_MIN;
         
-        solve(root , ans);
+        int ans  = INT_MIN;
+        dfs(root , ans);
         
         return ans;
+        
     }
 };
