@@ -5,9 +5,9 @@ public:
         int i=1, j=1;
         int n=nums.size();
         
-        while(i<n){
+        while(i < n){
             
-            if(nums[i-1]!=nums[i]){
+            if(nums[i-1] != nums[i]){
                 nums[j]=nums[i];
                 j++;
             }
