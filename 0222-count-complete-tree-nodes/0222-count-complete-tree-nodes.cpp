@@ -12,47 +12,43 @@
 class Solution {
 public:
     
-    int cntleft(TreeNode *node){
+    int leftHeight(TreeNode *root){
         
-        if(!node) return 0;
         int cnt=0;
         
-        while(node){
+        while(root){
+            root = root->left;
             cnt++;
-            node = node->left;
         }
         
         return cnt;
+        
     }
     
-    int cntRight(TreeNode *node){
+     int rightHeight(TreeNode *root){
         
-        if(!node) return 0;
         int cnt=0;
         
-        while(node){
+        while(root){
+            root = root->right;
             cnt++;
-            node = node->right;
         }
         
         return cnt;
+        
     }
     
     
     int countNodes(TreeNode* root) {
+         
+        if(!root) return 0;
         
-        if(!root) return 0 ;
-        
-        int left = cntleft(root);
-        int right = cntRight(root);
-        
-        if(left == right) return (1<<left) - 1;
-        
-        return 1 + countNodes(root->left) + countNodes(root->right);
+        int left = leftHeight(root);
+        int right = rightHeight(root);
 
+        if(left == right) return pow(2, left) -1;
+        
+        return 1 + countNodes(root->left) +countNodes(root->right);
+        
     }
 };
-
-
-
-
