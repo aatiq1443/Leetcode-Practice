@@ -12,32 +12,35 @@
 class Solution {
 public:
     
-    void solve(TreeNode* root, int target , vector<int>&ans , int &count){
+    void solve(TreeNode *root , int target , int &ans , unordered_map<long ,long> &mp , long sum){
         
         if(!root) return ;
         
-        ans.push_back(root->val);
+        sum = sum + root->val;
         
-        solve(root->left , target , ans , count);
-        solve(root->right , target , ans , count);
+        ans = ans + mp[sum - target];
         
-        long long sum=0;
+        mp[sum]++;
         
-        for(int i=ans.size()-1 ; i>=0 ;i--){
-            sum+=ans[i];
-            if(sum == target) count++;
-            
-        }
-        ans.pop_back();
+        solve(root->left , target , ans , mp , sum);
+        solve(root->right , target , ans , mp , sum);
+        
+        mp[sum]--;
         
     }
     
     int pathSum(TreeNode* root, int targetSum) {
         
-        vector<int>ans;
-        int count=0;
+        int ans = 0;
         
-        solve(root , targetSum , ans , count);
-        return count;
+        unordered_map<long , long> mp;
+        
+        mp[0] = 1;
+        
+        solve(root , targetSum , ans , mp , 0);
+        
+        return ans;
+        
+        
     }
 };
