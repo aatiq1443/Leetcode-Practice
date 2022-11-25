@@ -14,14 +14,19 @@ public:
     
     bool solve(TreeNode* left, TreeNode* right){
         
-        if(!left || !right) return left==right;
+        if(!left && !right) return true;
+        if(!left && right) return false;
+        if(left && !right) return false;
         
         if(left->val != right->val) return false;
         
         bool leftN = solve(left->left , right->right);
-        bool rightN = solve(left->right , right ->left);
+        bool rightN = solve(left->right , right->left);
         
         return leftN && rightN;
+        
+        
+        
     }
     
     bool isSymmetric(TreeNode* root) {
