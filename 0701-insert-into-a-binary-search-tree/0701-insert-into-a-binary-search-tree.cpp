@@ -13,7 +13,7 @@ class Solution {
 public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
         
-        if(!root) {
+        if(!root){
             TreeNode *newnode = new TreeNode(val);
             return newnode;
         }
