@@ -60,30 +60,6 @@ public:
 };
 
 
-//     int tab( string str1 , string str2 , int n , int m , vector<vector<int>> &dp){
-        
-//         for(int i=0 ; i< n+1 ;i++){
-//             for(int j=0 ; j< m+1 ;j++){
-//                 if(i==0 || j==0) dp[i][j] = 0;
-//             }
-//         }
-        
-//         for(int i=1 ; i<n+1 ; i++){
-//             for(int j=1 ; j<m+1 ; j++){
-//                 if(str1[i] == str2[j]) return dp[i][j] = 1 + dp[i-1][j-1];
-                
-//                 else{
-//                     int left = dp[i][j-1];
-//                     int right = dp[i-1][j];
-                    
-//                     return dp[i][j] = max(left , right);
-//                 }
-//             }
-//         }
-        
-        
-//         return dp[n][m];
-//     }
 
 
 
