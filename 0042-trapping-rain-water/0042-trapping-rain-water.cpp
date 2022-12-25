@@ -7,32 +7,74 @@ public:
         int left =0 ;
         int right = n-1;
         
-        int maxLeft =0;
-        int maxRight =0;
+//         int maxLeft =0;
+//         int maxRight =0;
         
-        int ans =0;
+//         int ans =0;
         
-        while(left<=right){
+//         while(left<=right){
+//             if(height[left] <= height[right]){
+//                 if(height[left]> maxLeft){
+//                     maxLeft = height[left];
+//                 }
+//                 else{
+//                     ans = ans+ (maxLeft - height[left]);
+//                 }
+//                 left++;
+//             }
+//             else if(height[right] <= height[left]){
+//                 if(height[right] >maxRight){
+//                     maxRight = height[right];
+//                 }
+//                 else{
+//                     ans = ans+ (maxRight - height[right]);
+//                 }
+//                 right--;
+//             }
+//         }
+//         return ans;
+        
+//     }
+    
+    int maxleft= 0;
+    int maxright = 0 ;
+    
+        int ans = 0;
+    
+    
+    while(left <= right) {
+        
             if(height[left] <= height[right]){
-                if(height[left]> maxLeft){
-                    maxLeft = height[left];
-                }
+                if(height[left] > maxleft) maxleft = height[left];
+
                 else{
-                    ans = ans+ (maxLeft - height[left]);
+                    ans = ans + (maxleft - height[left]);
                 }
                 left++;
             }
+
             else if(height[right] <= height[left]){
-                if(height[right] >maxRight){
-                    maxRight = height[right];
-                }
+
+                if(height[right] > maxright) maxright = height[right];
+
                 else{
-                    ans = ans+ (maxRight - height[right]);
+                    ans = ans + (maxright - height[right]);
                 }
                 right--;
-            }
-        }
-        return ans;
+
+                }
         
+        }  
+        return ans;
     }
+    
 };
+
+
+
+
+
+
+
+
+
