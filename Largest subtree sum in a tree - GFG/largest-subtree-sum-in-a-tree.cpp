@@ -83,14 +83,43 @@ class Solution {
   public:
     // Function to find largest subtree sum.
     int findLargestSubtreeSum(Node* root)
+
     {
-         if(root==NULL){
 
-            return 0;
+        int ans=INT_MIN;
 
-        }
+        solve(root,ans);
 
-        return findLargestSubtreeSum(root->left)+findLargestSubtreeSum(root->right)+root->data;
+        return ans;
+
+     }
+
+    
+
+    int solve(Node *root,int &ans)
+
+    {
+
+        if(root==NULL)
+
+        return 0;
+
+     
+
+        int left=solve(root->left,ans);
+
+        int right=solve(root->right,ans);
+
+        int ans1=left+right+root->data;
+
+        
+
+        ans=max(ans,ans1);
+
+        return ans1;
+
+        
+
     }
 };
 
