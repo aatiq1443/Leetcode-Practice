@@ -2,6 +2,7 @@ class Solution {
 public:
     
     void primeFactors(long long int n,vector<int>&factor){
+        
         int c=2;
         
         while(n>1){
