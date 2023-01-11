@@ -3,7 +3,7 @@ public:
     
     int solve(vector<int>&nums , int n , vector<int> &dp){
         
-       dp[0] = nums[0];
+        dp[0] = nums[0];
         
         for(int i=1 ; i<n ;i++){
             int first = nums[i] ;
