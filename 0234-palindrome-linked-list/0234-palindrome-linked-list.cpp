@@ -38,23 +38,22 @@ public:
     }
     
     bool isPalindrome(ListNode* head) {
-        ListNode *middle = getMid(head);   
         
+        ListNode *middle = getMid(head);
         ListNode *temp = middle;
-        
         middle = reverse(temp);
         
         ListNode *head1 = head;
         ListNode *head2 = middle;
         
-        while(head2){
-            if(head1->val != head2->val ) return false;
+        while(head2!=NULL){
+            if(head1 -> val != head2-> val) return false;
             head1 = head1->next;
             head2 = head2->next;
-                
         }
         
         return true;
+        
         
     }
 };
