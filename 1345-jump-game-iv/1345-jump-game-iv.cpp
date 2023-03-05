@@ -29,7 +29,7 @@ public:
             
             for(auto  &x : list){
                 
-                if(x>=0 and x<arr.size() and dis[x]>dis[index] + 2){
+                if(x>=0 and x<arr.size() and dis[x]>dis[index] + 1){
                     dis[x] = dis[index] + 1;
                     q.push(x);
                 }
