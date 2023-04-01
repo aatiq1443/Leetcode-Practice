@@ -2,23 +2,15 @@ class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
         
-        unordered_map<int, int> freq;
+        int firstXorSec = 0, mask = 1, first = 0;
         
-        for (auto &num: nums) ++freq[num];
+        for (auto &num: nums) firstXorSec ^= num;
         
-        vector<int> ans;
+        while (not (firstXorSec & mask)) mask <<= 1;
         
-        for (auto &[x, f]: freq)
-            
-            if (f == 1) {
-                
-                ans.push_back(x);
-                if (ans.size() == 2)
-                    return ans;
-                
-            }
+        for (auto &num: nums)
+            if (num & mask) first ^= num;
         
-        return ans;
-        
+        return {first, firstXorSec ^ first};
     }
 };
