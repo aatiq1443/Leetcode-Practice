@@ -1,7 +1,9 @@
 class Solution {
 public:
     long long maxScore(vector<int>& nums1, vector<int>& nums2, int k) {
+        
            vector<pair<int,int>> v;
+        
 
            for(int i=0;i<nums1.size();i++)
              v.push_back({nums2[i],nums1[i]});
