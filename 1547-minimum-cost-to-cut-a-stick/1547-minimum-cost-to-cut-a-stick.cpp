@@ -18,7 +18,7 @@ public:
     }
     int minCost(int n, vector<int> &cuts)
     {
-        dp = vector<vector<int>>(cuts.size() + 5, vector<int>(cuts.size() + 2, -1));
+        dp = vector<vector<int>>(cuts.size() + 2, vector<int>(cuts.size() + 2, -1));
         sort(cuts.begin(), cuts.end());
         return recursion(0, cuts.size() - 1, 0, n, cuts);
     }
