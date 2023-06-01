@@ -1,47 +1,43 @@
 class Solution {
 public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
+          queue<pair<pair<int,int>,int>>q;
+        q.push({{0,0},1});
         
-        int n = grid.size();
-        int m = grid[0].size();
+        if(grid[0][0]==1)return -1;
         
+        if(grid[0][0]==0 && grid.size()==1 && grid[0].size()==1)return 1;
         
-        
-        if(grid[0][0] == 1) return -1;
-        if(n==1 && m==1) return 1;
-        if(grid[n-1][m-1]==1) return -1;
-        
-        queue<pair<pair<int , int> ,int>>q;
-        
-        vector<vector<int>> vis(n , vector<int>(m ,0));
-        
-        q.push({{0 , 0 } , 1});
-    
-        vis[0][0] = 1;
-        int time;
-        
-        while(!q.empty()){
-            
-            int row = q.front().first.first;
-            int col = q.front().first.second;
-             time = q.front().second;
+        vector<vector<bool>>visited(grid.size(),vector<bool>(grid.size(),false));
+        visited[0][0]=true;
+        while(!q.empty())
+        {
+            pair<int,int>p = q.front().first; 
+            int x = p.first; 
+            int y= p.second; 
+            int lengthOfPath = q.front().second; 
             q.pop();
-         
             
-            for(int delrow=-1 ; delrow<=1 ; delrow++){
-                for(int delcol = -1 ; delcol<=1 ; delcol++){
-                    int nrow = row + delrow;
-                    int ncol = col + delcol;
+            vector<pair<int,int>>neighbours = {{0,1}, {0,-1}, {1,0}, {-1,0},
+                                               {1,1}, {-1,-1}, {1,-1}, {-1,1}};
+            
+            for(pair<int,int>neighbour: neighbours)
+            {
+                int newx = neighbour.first + x;
+                int newy = neighbour.second+ y;
+                
+         if(newx>=0 && newy>=0 && newx<grid.size() && newy<grid[0].size() && grid[newx][newy]==0 && !visited[newx][newy]){
+
+                    q.push({{newx,newy},lengthOfPath+1});
+                    visited[newx][newy] = true;
                     
-                    if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && vis[nrow][ncol]==0 && grid[nrow][ncol] == 0){
-                        if(nrow==n-1 && ncol == m-1) return time+1;
-                        vis[nrow][ncol] = 1;
-                        q.push({{nrow , ncol} , time+1});
-                    }
-                }
+                    if(newx==grid.size()-1 && newy==grid[0].size()-1)
+                     return lengthOfPath+1;
+           
+                }      
             }
-            
         }
-         return -1;
+        
+        return -1;
     }
 };
