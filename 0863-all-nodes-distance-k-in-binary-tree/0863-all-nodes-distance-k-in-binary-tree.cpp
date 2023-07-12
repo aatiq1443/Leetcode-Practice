@@ -9,8 +9,7 @@
  */
 class Solution {
 public:
-    
-        void printSubtree(TreeNode *root , int k ,vector<int>&ans){
+            void printSubtree(TreeNode *root , int k ,vector<int>&ans){
         
         if(!root || k<0) return ;
         
